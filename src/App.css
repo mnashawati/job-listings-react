@@ -1,5 +1,6 @@
 body {
   font-size: 15px;
+  font-family: "Spartan", sans-serif;
   background-color: hsl(180, 52%, 96%);
 }
 
@@ -14,7 +15,6 @@ header {
   width: 80%;
   margin: 20px auto;
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
 }
 
@@ -36,29 +36,30 @@ header {
 .company-name {
   color: hsl(180, 29%, 50%);
   font-weight: 700;
+  margin-right: 10px;
 }
 .new {
   background-color: hsl(180, 29%, 50%);
-
-  border-radius: 15px;
-  font-size: small;
-  font-weight: 700;
-  margin: 5px auto;
-  padding: 5px 10px;
-  color: white;
 }
+
 .featured {
-  border-radius: 15px;
-  font-size: small;
-  font-weight: 700;
-  padding: 5px 10px;
-  margin: 5px;
-  color: white;
   background-color: hsl(180, 14%, 20%);
 }
+
+.new,
+.featured {
+  border-radius: 25px;
+  font-size: smaller;
+  font-weight: 700;
+  margin: 5px;
+  padding: 6px 10px;
+  color: white;
+}
+
 .position {
   margin: 10px;
   font-weight: 700;
+  font-size: 20px;
 }
 .small-details {
   margin: 10px;
@@ -72,7 +73,7 @@ header {
   color: hsl(180, 29%, 50%);
   font-weight: 700;
   margin: 5px;
-  padding: 5px;
+  padding: 8px;
   border: none;
   border-radius: 5px;
 }

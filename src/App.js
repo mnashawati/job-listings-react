@@ -25,7 +25,7 @@ function App() {
               ) : null}
             </div>
             <div className="position">
-              <h2>{jobObj.position}</h2>
+              <p>{jobObj.position}</p>
             </div>
             <div className="small-details">
               <span className="posted-at">{jobObj.postedAt} </span>•
