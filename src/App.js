@@ -10,6 +10,7 @@ function App() {
       </header>
       {data.map((jobObj) => (
         <div
+          key={jobObj.id}
           className={jobObj.featured ? "job-card featured-jobs" : "job-card"}
         >
           <div className="company-logo">
@@ -18,10 +19,10 @@ function App() {
           <div className="job-details">
             <div className="title">
               <span className="company-name">{jobObj.company} </span>
-              <span className="new"> {jobObj.new ? "NEW!" : null} </span>
-              <span className="featured">
-                {jobObj.featured ? "FEATURED" : null}
-              </span>
+              {jobObj.new ? <span className="new">NEW!</span> : null}
+              {jobObj.featured ? (
+                <span className="featured">FEATURED</span>
+              ) : null}
             </div>
             <div className="position">
               <h2>{jobObj.position}</h2>
