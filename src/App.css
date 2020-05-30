@@ -6,12 +6,13 @@ body {
 
 header {
   background-color: hsl(180, 29%, 50%);
+  margin-bottom: 60px;
 }
 
 .job-card {
   background-color: white;
   border-radius: 5px;
-  box-shadow: 0 2px 4px 0 #92a8d1, 0 3px 10px 0 rgba(54, 53, 53, 0.19);
+  box-shadow: 0 5px 10px 0 hsl(180, 31%, 95%), 0 5px 10px 0 hsl(180, 29%, 50%);
   width: 80%;
   margin: 20px auto;
   display: flex;
@@ -19,7 +20,7 @@ header {
 }
 
 .featured-jobs {
-  border-left-width: 4px;
+  border-left-width: 5px;
   border-left-style: solid;
   border-left-color: hsl(180, 29%, 50%);
 }
