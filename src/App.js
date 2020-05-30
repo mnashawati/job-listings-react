@@ -6,7 +6,12 @@ function App() {
   return (
     <div className="App">
       <header>
-        <img src="./images/bg-header-desktop.svg" alt="header" />
+        <img
+          className="header-img"
+          src="./images/bg-header-desktop.svg"
+          alt="header"
+          width="100%"
+        />
       </header>
       {data.map((jobObj) => (
         <div
