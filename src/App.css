@@ -1,3 +1,78 @@
+body {
+  font-size: 15px;
+  background-color: hsl(180, 52%, 96%);
+}
+
 header {
   background-color: hsl(180, 29%, 50%);
+}
+
+.job-card {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 #92a8d1, 0 3px 10px 0 rgba(54, 53, 53, 0.19);
+  width: 80%;
+  margin: 20px auto;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.featured-jobs {
+  border-left-width: 4px;
+  border-left-style: solid;
+  border-left-color: hsl(180, 29%, 50%);
+}
+
+.company-logo {
+  margin: 20px;
+}
+
+.job-details {
+}
+.title {
+  margin: 10px;
+}
+.company-name {
+  color: hsl(180, 29%, 50%);
+  font-weight: 700;
+}
+.new {
+  background-color: hsl(180, 29%, 50%);
+
+  border-radius: 15px;
+  font-size: small;
+  font-weight: 700;
+  margin: 5px auto;
+  padding: 5px 10px;
+  color: white;
+}
+.featured {
+  border-radius: 15px;
+  font-size: small;
+  font-weight: 700;
+  padding: 5px 10px;
+  margin: 5px;
+  color: white;
+  background-color: black;
+}
+.position {
+  margin: 10px;
+  font-weight: 700;
+}
+.small-details {
+  margin: 10px;
+  opacity: 0.5;
+}
+.languages {
+  margin-left: auto;
+  margin-right: 20px;
+}
+.languages button {
+  color: hsl(180, 29%, 50%);
+  font-weight: 700;
+  margin: 5px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
 }
