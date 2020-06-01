@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import data from "./data.json";
 
 function App() {
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [currentData, setCurrentData] = useState([...data]);
+
+  const addToSelected = (buttonValue) => {
+    if (!selectedItems.includes(buttonValue)) {
+      setSelectedItems([...selectedItems, buttonValue]);
+    }
+    setCurrentData(
+      currentData.filter(
+        (obj) =>
+          Object.values(obj).includes(buttonValue) ||
+          obj.languages.includes(buttonValue)
+      )
+    );
+  };
+
   return (
     <div className="App">
       <header>
@@ -13,7 +29,13 @@ function App() {
           width="100%"
         />
       </header>
-      {data.map((jobObj) => (
+      <div className="input-box">
+        {selectedItems.map((item) => (
+          <button>{item}</button>
+        ))}
+      </div>
+
+      {currentData.map((jobObj) => (
         <div
           key={jobObj.id}
           className={jobObj.featured ? "job-card featured-jobs" : "job-card"}
@@ -39,10 +61,30 @@ function App() {
             </div>
           </div>
           <div className="languages">
-            <button>{jobObj.role}</button>
-            <button>{jobObj.level}</button>
+            <button
+              onClick={() => {
+                addToSelected(jobObj.role);
+              }}
+            >
+              {jobObj.role}
+            </button>
+            <button
+              onClick={() => {
+                addToSelected(jobObj.level);
+              }}
+            >
+              {jobObj.level}
+            </button>
+
             {jobObj.languages.map((language, index) => (
-              <button key={index}>{language}</button>
+              <button
+                key={index}
+                onClick={() => {
+                  addToSelected(language);
+                }}
+              >
+                {language}
+              </button>
             ))}
           </div>
         </div>
