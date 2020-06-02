@@ -19,50 +19,13 @@ function App() {
     );
   };
 
-  // const removeFromSelection = (buttonValue) => {
-  //   setSelectedItems(selectedItems.filter((string) => string !== buttonValue));
-  //   setCurrentData(selectedItems.length === 1 ? [...data] : filtering);
-  // };
-
-  // function filtering(buttonValue) {
-  //   let filteredArray = [];
-  //   if (data.any((obj) => obj.role === buttonValue)) {
-  //     filteredArray = data.filter(
-  //       (obj) =>
-  //         selectedItems.includes(obj.level) ||
-  //         obj.languages.includes(...selectedItems)
-  //     );
-  //   } else if (data.any((obj) => obj.level === buttonValue)) {
-  //     filteredArray = data.filter(
-  //       (obj) =>
-  //         selectedItems.includes(obj.role) ||
-  //         obj.languages.includes(...selectedItems)
-  //     );
-  //   } else {
-  //     filteredArray = data.filter(
-  //       (obj) =>
-  //         Object.values(obj).includes(...selectedItems) ||
-  //         obj.languages.includes(...selectedItems)
-  //     );
-  //   }
-  //   return filteredArray;
-  // }
-  // setCurrentData(
-
-  //         [...data].filter(
-  //           (obj) =>
-  //             Object.values(obj).includes(...selectedItems) ||
-  //             obj.languages.includes(...selectedItems)
-  //         )
-  //       );
-
-  const deletingButton = (buttonValue) => {
+  const removingButtonsFromSelected = (buttonValue) => {
     setSelectedItems(selectedItems.filter((string) => string !== buttonValue));
 
     let filteredButtons = [...selectedItems].filter(
       (string) => string !== buttonValue
     );
-    console.log("filteredButtons: ", filteredButtons);
+    // console.log("filteredButtons: ", filteredButtons);
 
     const allRoles = data.map((obj) => obj.role);
     const allLevels = data.map((obj) => obj.level);
@@ -78,17 +41,17 @@ function App() {
       filteredButtons.forEach((s) => {
         if (allRoles.includes(s)) {
           newArr = newArr.filter((obj) => obj.role === s);
-          console.log(`newArray after Roles: `, newArr);
+          // console.log(`newArray after Roles: `, newArr);
         }
         if (allLevels.includes(s)) {
           newArr = newArr.filter((obj) => obj.level === s);
-          console.log(`newArray after levels: `, newArr);
+          // console.log(`newArray after levels: `, newArr);
         }
         if (allLanguages.includes(s)) {
           newArr = newArr.filter((obj) => obj.languages.includes(s));
-          console.log(`newArray after languages: `, newArr);
+          // console.log(`newArray after languages: `, newArr);
         }
-        console.log(`newArray: `, newArr);
+        // console.log(`newArray: `, newArr);
         setCurrentData(newArr);
       });
     }
@@ -109,14 +72,14 @@ function App() {
           <button
             key={item}
             onClick={() => {
-              deletingButton(item);
+              removingButtonsFromSelected(item);
             }}
           >
             {item}
           </button>
         ))}
       </div>
-      {console.log(selectedItems)} {console.log(currentData)}{" "}
+      {/* {console.log(selectedItems)} {console.log(currentData)}{" "} */}
       {currentData.map((jobObj) => (
         <div
           key={jobObj.id}
