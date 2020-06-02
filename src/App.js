@@ -47,6 +47,52 @@ function App() {
   //   }
   //   return filteredArray;
   // }
+  // setCurrentData(
+
+  //         [...data].filter(
+  //           (obj) =>
+  //             Object.values(obj).includes(...selectedItems) ||
+  //             obj.languages.includes(...selectedItems)
+  //         )
+  //       );
+
+  const deletingButton = (buttonValue) => {
+    setSelectedItems(selectedItems.filter((string) => string !== buttonValue));
+
+    let filteredButtons = [...selectedItems].filter(
+      (string) => string !== buttonValue
+    );
+    console.log("filteredButtons: ", filteredButtons);
+
+    const allRoles = data.map((obj) => obj.role);
+    const allLevels = data.map((obj) => obj.level);
+    const allLanguages = [];
+    data.map((obj) =>
+      obj.languages.forEach((language) => allLanguages.push(language))
+    );
+
+    if (filteredButtons.length === 0) {
+      setCurrentData([...data]);
+    } else {
+      let newArr = [...data];
+      filteredButtons.forEach((s) => {
+        if (allRoles.includes(s)) {
+          newArr = newArr.filter((obj) => obj.role === s);
+          console.log(`newArray after Roles: `, newArr);
+        }
+        if (allLevels.includes(s)) {
+          newArr = newArr.filter((obj) => obj.level === s);
+          console.log(`newArray after levels: `, newArr);
+        }
+        if (allLanguages.includes(s)) {
+          newArr = newArr.filter((obj) => obj.languages.includes(s));
+          console.log(`newArray after languages: `, newArr);
+        }
+        console.log(`newArray: `, newArr);
+        setCurrentData(newArr);
+      });
+    }
+  };
 
   return (
     <div className="App">
@@ -63,19 +109,7 @@ function App() {
           <button
             key={item}
             onClick={() => {
-              setSelectedItems(
-                selectedItems.filter((string) => string !== item)
-              );
-              // let filteredData = [];
-              selectedItems.length === 1
-                ? setCurrentData([...data])
-                : setCurrentData(
-                    [...data].filter(
-                      (obj) =>
-                        Object.values(obj).includes(...selectedItems) ||
-                        obj.languages.includes(...selectedItems)
-                    )
-                  );
+              deletingButton(item);
             }}
           >
             {item}
