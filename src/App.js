@@ -19,6 +19,35 @@ function App() {
     );
   };
 
+  // const removeFromSelection = (buttonValue) => {
+  //   setSelectedItems(selectedItems.filter((string) => string !== buttonValue));
+  //   setCurrentData(selectedItems.length === 1 ? [...data] : filtering);
+  // };
+
+  // function filtering(buttonValue) {
+  //   let filteredArray = [];
+  //   if (data.any((obj) => obj.role === buttonValue)) {
+  //     filteredArray = data.filter(
+  //       (obj) =>
+  //         selectedItems.includes(obj.level) ||
+  //         obj.languages.includes(...selectedItems)
+  //     );
+  //   } else if (data.any((obj) => obj.level === buttonValue)) {
+  //     filteredArray = data.filter(
+  //       (obj) =>
+  //         selectedItems.includes(obj.role) ||
+  //         obj.languages.includes(...selectedItems)
+  //     );
+  //   } else {
+  //     filteredArray = data.filter(
+  //       (obj) =>
+  //         Object.values(obj).includes(...selectedItems) ||
+  //         obj.languages.includes(...selectedItems)
+  //     );
+  //   }
+  //   return filteredArray;
+  // }
+
   return (
     <div className="App">
       <header>
