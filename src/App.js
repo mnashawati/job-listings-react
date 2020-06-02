@@ -31,10 +31,29 @@ function App() {
       </header>
       <div className="input-box">
         {selectedItems.map((item) => (
-          <button>{item}</button>
+          <button
+            key={item}
+            onClick={() => {
+              setSelectedItems(
+                selectedItems.filter((string) => string !== item)
+              );
+              // let filteredData = [];
+              selectedItems.length === 1
+                ? setCurrentData([...data])
+                : setCurrentData(
+                    [...data].filter(
+                      (obj) =>
+                        Object.values(obj).includes(...selectedItems) ||
+                        obj.languages.includes(...selectedItems)
+                    )
+                  );
+            }}
+          >
+            {item}
+          </button>
         ))}
       </div>
-
+      {console.log(selectedItems)} {console.log(currentData)}{" "}
       {currentData.map((jobObj) => (
         <div
           key={jobObj.id}
