@@ -6,7 +6,40 @@ body {
 
 header {
   background-color: hsl(180, 29%, 50%);
+  width: 100%;
+  height: 144px;
   margin-bottom: 60px;
+}
+
+.header-img {
+  z-index: 0;
+}
+
+.input-box {
+  position: relative;
+  background-color: white;
+  border-radius: 5px;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  margin-top: -20px;
+}
+
+.clear {
+  color: hsl(180, 29%, 50%);
+  margin: auto;
+  margin-right: 30px;
+  padding: 8px;
+  font-weight: 700;
+}
+
+.clear:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.job-cards-container {
+  margin-top: 75px;
 }
 
 .job-card {
@@ -31,6 +64,7 @@ header {
 
 .job-details {
 }
+
 .title {
   margin: 10px;
 }
@@ -62,20 +96,62 @@ header {
   font-weight: 700;
   font-size: 20px;
 }
+
+.position:hover {
+  cursor: pointer;
+  color: hsl(180, 29%, 50%);
+}
+
 .small-details {
   margin: 10px;
   opacity: 0.5;
 }
+
 .languages {
   margin-left: auto;
   margin-right: 20px;
 }
-.languages button,
-.input-box button {
+
+.languages button {
   color: hsl(180, 29%, 50%);
   font-weight: 700;
   margin: 5px;
   padding: 8px;
   border: none;
   border-radius: 5px;
+}
+
+.languages button:hover {
+  cursor: pointer;
+  color: white;
+  background-color: hsl(180, 29%, 50%);
+}
+
+.selected-btn-with-x {
+  margin: 5px;
+}
+
+.selected-word {
+  color: hsl(180, 29%, 50%);
+  font-weight: 700;
+  margin: 5px 0 5px 5px;
+  padding: 8px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.x-button {
+  color: white;
+  background-color: hsl(180, 29%, 50%);
+  border-radius: 0px 5px 5px 0px;
+  margin: 5px 5px 5px 0;
+  font-weight: 700;
+  padding: 8px;
+  border: none;
+  width: 30px;
+}
+
+.x-button:hover {
+  background-color: hsl(180, 14%, 20%);
+  cursor: pointer;
 }

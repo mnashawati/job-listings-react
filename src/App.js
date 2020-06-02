@@ -19,7 +19,7 @@ function App() {
     );
   };
 
-  const removingButtonsFromSelected = (buttonValue) => {
+  const removeBtnFromSelectedAndUpdateDisplayedJobs = (buttonValue) => {
     setSelectedItems(selectedItems.filter((string) => string !== buttonValue));
 
     let filteredButtons = [...selectedItems].filter(
@@ -66,74 +66,99 @@ function App() {
           alt="header"
           width="100%"
         />
-      </header>
-      <div className="input-box">
-        {selectedItems.map((item) => (
-          <button
-            key={item}
-            onClick={() => {
-              removingButtonsFromSelected(item);
-            }}
-          >
-            {item}
-          </button>
-        ))}
-      </div>
-      {/* {console.log(selectedItems)} {console.log(currentData)}{" "} */}
-      {currentData.map((jobObj) => (
-        <div
-          key={jobObj.id}
-          className={jobObj.featured ? "job-card featured-jobs" : "job-card"}
-        >
-          <div className="company-logo">
-            <img src={jobObj.logo} alt={jobObj.company + " logo"} />
-          </div>
-          <div className="job-details">
-            <div className="title">
-              <span className="company-name">{jobObj.company} </span>
-              {jobObj.new ? <span className="new">NEW!</span> : null}
-              {jobObj.featured ? (
-                <span className="featured">FEATURED</span>
-              ) : null}
-            </div>
-            <div className="position">
-              <p>{jobObj.position}</p>
-            </div>
-            <div className="small-details">
-              <span className="posted-at">{jobObj.postedAt} </span>•
-              <span className="contract"> {jobObj.contract} </span>•
-              <span className="location"> {jobObj.location}</span>
-            </div>
-          </div>
-          <div className="languages">
-            <button
-              onClick={() => {
-                addToSelected(jobObj.role);
-              }}
-            >
-              {jobObj.role}
-            </button>
-            <button
-              onClick={() => {
-                addToSelected(jobObj.level);
-              }}
-            >
-              {jobObj.level}
-            </button>
-
-            {jobObj.languages.map((language, index) => (
+        <div className="input-box">
+          {selectedItems.map((item) => (
+            <div className="selected-btn-with-x">
+              <button key={item} className="selected-word">
+                {item}
+              </button>
               <button
-                key={index}
+                className="x-button"
                 onClick={() => {
-                  addToSelected(language);
+                  removeBtnFromSelectedAndUpdateDisplayedJobs(item);
                 }}
               >
-                {language}
+                X
               </button>
-            ))}
-          </div>
+            </div>
+          ))}
+          {selectedItems.length > 0 ? (
+            <p
+              className="clear"
+              onClick={() => {
+                setSelectedItems([]);
+                setCurrentData([...data]);
+              }}
+            >
+              Clear
+            </p>
+          ) : null}
         </div>
-      ))}
+      </header>
+      {/* {console.log(selectedItems)} {console.log(currentData)}{" "} */}
+      <div className="job-cards-container">
+        {currentData.map((jobObj) => (
+          <div
+            key={jobObj.id}
+            className={jobObj.featured ? "job-card featured-jobs" : "job-card"}
+          >
+            <div className="company-logo">
+              <img src={jobObj.logo} alt={jobObj.company + " logo"} />
+            </div>
+            <div className="job-details">
+              <div className="title">
+                <span className="company-name">{jobObj.company} </span>
+                {jobObj.new ? <span className="new">NEW!</span> : null}
+                {jobObj.featured ? (
+                  <span className="featured">FEATURED</span>
+                ) : null}
+              </div>
+              <div
+                className="position"
+                onClick={() => {
+                  setCurrentData([
+                    data.find((obj) => obj.position === jobObj.position),
+                  ]);
+                }}
+              >
+                <p>{jobObj.position}</p>
+              </div>
+              <div className="small-details">
+                <span className="posted-at">{jobObj.postedAt} </span>•
+                <span className="contract"> {jobObj.contract} </span>•
+                <span className="location"> {jobObj.location}</span>
+              </div>
+            </div>
+            <div className="languages">
+              <button
+                onClick={() => {
+                  addToSelected(jobObj.role);
+                }}
+              >
+                {jobObj.role}
+              </button>
+              <button
+                onClick={() => {
+                  addToSelected(jobObj.level);
+                }}
+              >
+                {jobObj.level}
+              </button>
+
+              {jobObj.languages.map((language, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    addToSelected(language);
+                  }}
+                >
+                  {language}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
