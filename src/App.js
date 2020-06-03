@@ -14,7 +14,8 @@ function App() {
       currentData.filter(
         (obj) =>
           Object.values(obj).includes(buttonValue) ||
-          obj.languages.includes(buttonValue)
+          obj.languages.includes(buttonValue) ||
+          obj.tools.includes(buttonValue)
       )
     );
   };
@@ -33,6 +34,8 @@ function App() {
     data.map((obj) =>
       obj.languages.forEach((language) => allLanguages.push(language))
     );
+    const allTools = [];
+    data.map((obj) => obj.tools.forEach((language) => allTools.push(language)));
 
     if (filteredButtons.length === 0) {
       setCurrentData([...data]);
@@ -50,6 +53,9 @@ function App() {
         if (allLanguages.includes(s)) {
           newArr = newArr.filter((obj) => obj.languages.includes(s));
           // console.log(`newArray after languages: `, newArr);
+        }
+        if (allTools.includes(s)) {
+          newArr = newArr.filter((obj) => obj.tools.includes(s));
         }
         // console.log(`newArray: `, newArr);
         setCurrentData(newArr);
@@ -129,7 +135,7 @@ function App() {
                 <span className="location"> {jobObj.location}</span>
               </div>
             </div>
-            <div className="languages">
+            <div className="btns">
               <button
                 onClick={() => {
                   addToSelected(jobObj.role);
@@ -153,6 +159,17 @@ function App() {
                   }}
                 >
                   {language}
+                </button>
+              ))}
+
+              {jobObj.tools.map((tool, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    addToSelected(tool);
+                  }}
+                >
+                  {tool}
                 </button>
               ))}
             </div>
