@@ -4,64 +4,27 @@ import data from "./data.json";
 
 function App() {
   const [selectedItems, setSelectedItems] = useState([]);
-  const [currentData, setCurrentData] = useState([...data]);
 
-  const addToSelected = (buttonValue) => {
-    if (!selectedItems.includes(buttonValue)) {
-      setSelectedItems([...selectedItems, buttonValue]);
+  const addToSelected = (selectedWord) => {
+    if (!selectedItems.includes(selectedWord)) {
+      setSelectedItems([...selectedItems, selectedWord]);
     }
-    setCurrentData(
-      currentData.filter(
-        (obj) =>
-          Object.values(obj).includes(buttonValue) ||
-          obj.languages.includes(buttonValue) ||
-          obj.tools.includes(buttonValue)
-      )
+  };
+
+  const removeFromSelected = (selectedWord) => {
+    setSelectedItems(
+      [...selectedItems].filter((string) => string !== selectedWord)
     );
   };
 
-  const removeBtnFromSelectedAndUpdateDisplayedJobs = (buttonValue) => {
-    setSelectedItems(selectedItems.filter((string) => string !== buttonValue));
-
-    let filteredButtons = [...selectedItems].filter(
-      (string) => string !== buttonValue
-    );
-    // console.log("filteredButtons: ", filteredButtons);
-
-    const allRoles = data.map((obj) => obj.role);
-    const allLevels = data.map((obj) => obj.level);
-    const allLanguages = [];
-    data.map((obj) =>
-      obj.languages.forEach((language) => allLanguages.push(language))
-    );
-    const allTools = [];
-    data.map((obj) => obj.tools.forEach((language) => allTools.push(language)));
-
-    if (filteredButtons.length === 0) {
-      setCurrentData([...data]);
-    } else {
-      let newArr = [...data];
-      filteredButtons.forEach((s) => {
-        if (allRoles.includes(s)) {
-          newArr = newArr.filter((obj) => obj.role === s);
-          // console.log(`newArray after Roles: `, newArr);
-        }
-        if (allLevels.includes(s)) {
-          newArr = newArr.filter((obj) => obj.level === s);
-          // console.log(`newArray after levels: `, newArr);
-        }
-        if (allLanguages.includes(s)) {
-          newArr = newArr.filter((obj) => obj.languages.includes(s));
-          // console.log(`newArray after languages: `, newArr);
-        }
-        if (allTools.includes(s)) {
-          newArr = newArr.filter((obj) => obj.tools.includes(s));
-        }
-        // console.log(`newArray: `, newArr);
-        setCurrentData(newArr);
-      });
-    }
-  };
+  const jobsToShow = data.filter((job) =>
+    selectedItems.every(
+      (item) =>
+        Object.values(job).includes(item) ||
+        job.languages.includes(item) ||
+        job.tools.includes(item)
+    )
+  );
 
   return (
     <div className="App">
@@ -81,7 +44,7 @@ function App() {
               <button
                 className="x-button"
                 onClick={() => {
-                  removeBtnFromSelectedAndUpdateDisplayedJobs(item);
+                  removeFromSelected(item);
                 }}
               >
                 X
@@ -93,7 +56,6 @@ function App() {
               className="clear"
               onClick={() => {
                 setSelectedItems([]);
-                setCurrentData([...data]);
               }}
             >
               Clear
@@ -101,9 +63,8 @@ function App() {
           ) : null}
         </div>
       </header>
-      {/* {console.log(selectedItems)} {console.log(currentData)}{" "} */}
       <div className="job-cards-container">
-        {currentData.map((jobObj) => (
+        {jobsToShow.map((jobObj) => (
           <div
             key={jobObj.id}
             className={jobObj.featured ? "job-card featured-jobs" : "job-card"}
@@ -121,11 +82,14 @@ function App() {
               </div>
               <div
                 className="position"
-                onClick={() => {
-                  setCurrentData([
-                    data.find((obj) => obj.position === jobObj.position),
-                  ]);
-                }}
+                onClick={() =>
+                  setSelectedItems(
+                    [...selectedItems, jobObj.role, jobObj.level]
+                      .concat(jobObj.languages)
+                      .concat(jobObj.tools)
+                      .concat([jobObj.position])
+                  )
+                }
               >
                 <p>{jobObj.position}</p>
               </div>

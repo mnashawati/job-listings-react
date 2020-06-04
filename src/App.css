@@ -12,7 +12,7 @@ header {
 }
 
 .header-img {
-  z-index: 0;
+  /* z-index: 0; */
 }
 
 .input-box {
