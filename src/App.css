@@ -7,7 +7,6 @@ body {
 header {
   background-color: hsl(180, 29%, 50%);
   height: 144px;
-  /* width: 100%; */
   margin-bottom: 60px;
 }
 
@@ -147,6 +146,7 @@ header {
 
 .selected-word {
   color: hsl(180, 29%, 50%);
+  background-color: hsl(180, 52%, 96%);
   font-weight: 700;
   margin: 5px 0 5px 5px;
   padding: 8px;
@@ -185,11 +185,11 @@ header {
 
   .job-details {
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    margin: 0 auto 10px 20px;
   }
 
-  .job-details,
   .btns {
-    margin: 10px auto 10px 20px;
+    margin: 0 auto 10px 15px;
   }
 
   .company-logo img {
