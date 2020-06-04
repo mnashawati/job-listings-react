@@ -35,34 +35,32 @@ function App() {
           alt="header"
           width="100%"
         />
-        <div className="input-box">
-          {selectedItems.map((item) => (
-            <div className="selected-btn-with-x">
-              <button key={item} className="selected-word">
-                {item}
-              </button>
-              <button
-                className="x-button"
-                onClick={() => {
-                  removeFromSelected(item);
-                }}
-              >
-                X
-              </button>
-            </div>
-          ))}
-          {selectedItems.length > 0 ? (
-            <p
-              className="clear"
+      </header>
+      <div className="input-box">
+        {selectedItems.map((item) => (
+          <div key={item} className="selected-btn-with-x">
+            <button className="selected-word">{item}</button>
+            <button
+              className="x-button"
               onClick={() => {
-                setSelectedItems([]);
+                removeFromSelected(item);
               }}
             >
-              Clear
-            </p>
-          ) : null}
-        </div>
-      </header>
+              X
+            </button>
+          </div>
+        ))}
+        {selectedItems.length > 0 ? (
+          <p
+            className="clear"
+            onClick={() => {
+              setSelectedItems([]);
+            }}
+          >
+            Clear
+          </p>
+        ) : null}
+      </div>
       <div className="job-cards-container">
         {jobsToShow.map((jobObj) => (
           <div
@@ -84,7 +82,7 @@ function App() {
                 className="position"
                 onClick={() =>
                   setSelectedItems(
-                    [...selectedItems, jobObj.role, jobObj.level]
+                    [jobObj.role, jobObj.level]
                       .concat(jobObj.languages)
                       .concat(jobObj.tools)
                       .concat([jobObj.position])
