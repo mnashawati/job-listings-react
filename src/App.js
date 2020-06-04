@@ -3,22 +3,22 @@ import "./App.css";
 import allJobs from "./data.json";
 
 function App() {
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedFilteringWords, setSelectedFilteringWords] = useState([]);
 
   const addToSelected = (selectedWord) => {
-    if (!selectedItems.includes(selectedWord)) {
-      setSelectedItems([...selectedItems, selectedWord]);
+    if (!selectedFilteringWords.includes(selectedWord)) {
+      setSelectedFilteringWords([...selectedFilteringWords, selectedWord]);
     }
   };
 
   const removeFromSelected = (selectedWord) => {
-    setSelectedItems(
-      [...selectedItems].filter((string) => string !== selectedWord)
+    setSelectedFilteringWords(
+      [...selectedFilteringWords].filter((string) => string !== selectedWord)
     );
   };
 
   const jobsToShow = allJobs.filter((job) =>
-    selectedItems.every(
+    selectedFilteringWords.every(
       (item) =>
         Object.values(job).includes(item) ||
         job.languages.includes(item) ||
@@ -49,7 +49,7 @@ function App() {
         />
       </header>
       <div className="input-box">
-        {selectedItems.map((item) => (
+        {selectedFilteringWords.map((item) => (
           <div key={item} className="selected-btn-with-x">
             <button className="selected-word">{item}</button>
             <button
@@ -62,11 +62,11 @@ function App() {
             </button>
           </div>
         ))}
-        {selectedItems.length > 0 ? (
+        {selectedFilteringWords.length > 0 ? (
           <p
             className="clear"
             onClick={() => {
-              setSelectedItems([]);
+              setSelectedFilteringWords([]);
             }}
           >
             Clear
@@ -93,7 +93,7 @@ function App() {
               <div
                 className="position"
                 onClick={() =>
-                  setSelectedItems(
+                  setSelectedFilteringWords(
                     [jobObj.role, jobObj.level]
                       .concat(jobObj.languages)
                       .concat(jobObj.tools)
