@@ -72,10 +72,10 @@ function App() {
             </div>
             <div className="job-details">
               <div className="title">
-                <span className="company-name">{jobObj.company} </span>
-                {jobObj.new ? <span className="new">NEW!</span> : null}
+                <div className="company-name">{jobObj.company} </div>
+                {jobObj.new ? <div className="new">NEW!</div> : null}
                 {jobObj.featured ? (
-                  <span className="featured">FEATURED</span>
+                  <div className="featured">FEATURED</div>
                 ) : null}
               </div>
               <div
