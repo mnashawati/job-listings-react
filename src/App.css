@@ -114,6 +114,7 @@ header {
 
 .btns button {
   color: hsl(180, 29%, 50%);
+  background-color: hsl(180, 52%, 96%);
   font-weight: 700;
   margin: 5px;
   padding: 8px;
