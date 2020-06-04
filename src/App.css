@@ -28,7 +28,7 @@ header {
 }
 
 .clear {
-  color: hsl(180, 29%, 50%);
+  color: rgba(0, 0, 0, 0.5);
   margin: auto;
   margin-right: 30px;
   padding: 8px;
@@ -37,6 +37,7 @@ header {
 
 .clear:hover {
   cursor: pointer;
+  color: hsl(180, 29%, 50%);
   text-decoration: underline;
 }
 
@@ -77,11 +78,13 @@ header {
 .title {
   margin: 10px;
 }
+
 .company-name {
   color: hsl(180, 29%, 50%);
   font-weight: 700;
   margin-right: 10px;
 }
+
 .new {
   background-color: hsl(180, 29%, 50%);
 }
