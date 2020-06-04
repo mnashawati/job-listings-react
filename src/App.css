@@ -63,9 +63,6 @@ header {
   margin: 20px;
 }
 
-.job-details {
-}
-
 .title {
   margin: 10px;
 }
@@ -109,8 +106,8 @@ header {
 }
 
 .btns {
+  margin: 20px;
   margin-left: auto;
-  margin-right: 20px;
 }
 
 .btns button {
@@ -130,7 +127,7 @@ header {
 
 .selected-btn-with-x {
   margin: 5px;
-  border: 1px solid white;
+  border: 5px solid white;
 }
 
 .selected-word {
@@ -156,4 +153,24 @@ header {
 .x-button:hover {
   background-color: hsl(180, 14%, 20%);
   cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .job-card {
+    flex-direction: column;
+    margin-bottom: 60px;
+  }
+
+  .company-logo {
+    align-self: flex-start;
+    margin-top: -30px;
+  }
+
+  .job-details {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+    padding-bottom: 20px;
+  }
+  .btns {
+    margin: 20px;
+  }
 }
