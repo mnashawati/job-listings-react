@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import data from "./data.json";
+import allJobs from "./data.json";
 
 function App() {
   const [selectedItems, setSelectedItems] = useState([]);
@@ -17,7 +17,7 @@ function App() {
     );
   };
 
-  const jobsToShow = data.filter((job) =>
+  const jobsToShow = allJobs.filter((job) =>
     selectedItems.every(
       (item) =>
         Object.values(job).includes(item) ||
@@ -25,6 +25,18 @@ function App() {
         job.tools.includes(item)
     )
   );
+
+  const ClickableFilteringWord = ({ field }) => {
+    return (
+      <button
+        onClick={() => {
+          addToSelected(field);
+        }}
+      >
+        {field}
+      </button>
+    );
+  };
 
   return (
     <div className="App">
@@ -98,41 +110,13 @@ function App() {
               </div>
             </div>
             <div className="btns">
-              <button
-                onClick={() => {
-                  addToSelected(jobObj.role);
-                }}
-              >
-                {jobObj.role}
-              </button>
-              <button
-                onClick={() => {
-                  addToSelected(jobObj.level);
-                }}
-              >
-                {jobObj.level}
-              </button>
-
+              <ClickableFilteringWord field={jobObj.role} />
+              <ClickableFilteringWord field={jobObj.level} />
               {jobObj.languages.map((language, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    addToSelected(language);
-                  }}
-                >
-                  {language}
-                </button>
+                <ClickableFilteringWord key={index} field={language} />
               ))}
-
               {jobObj.tools.map((tool, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    addToSelected(tool);
-                  }}
-                >
-                  {tool}
-                </button>
+                <ClickableFilteringWord key={index} field={tool} />
               ))}
             </div>
           </div>
