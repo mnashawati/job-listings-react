@@ -183,10 +183,12 @@ header {
   .job-details {
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   }
+
   .job-details,
   .btns {
     margin: 10px auto 10px 20px;
   }
+
   .company-logo img {
     width: 70px;
     height: 70px;
